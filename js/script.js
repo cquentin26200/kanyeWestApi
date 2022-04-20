@@ -19,3 +19,11 @@ title.style.marginTop = "0";
 
 const button = document.querySelector("header button");
 button.style.textTransform = "uppercase";
+
+function getApi () {
+    fetch("https://api.kanye.rest")
+        .then(response => response.json())
+        .then(data => data.quote)
+}
+
+getApi()
