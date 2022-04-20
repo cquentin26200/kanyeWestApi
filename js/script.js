@@ -20,10 +20,28 @@ title.style.marginTop = "0";
 const button = document.querySelector("header button");
 button.style.textTransform = "uppercase";
 
-function getApi () {
-    fetch("https://api.kanye.rest")
-        .then(response => response.json())
-        .then(data => data.quote)
+const main = document.createElement("main");
+body.appendChild(main);
+
+async function getApi() {
+  return fetch("https://api.kanye.rest")
+    .then((response) => response.json())
+    .then((data) => data.quote);
 }
 
-getApi()
+getApi();
+
+const ul = document.createElement("ul");
+main.appendChild(ul);
+
+button.addEventListener("click", () => {
+  const li = document.createElement("li");
+  ul.appendChild(li);
+});
+
+async function useApi() {
+  const sentence = await getApi();
+  console.log(sentence);
+}
+
+useApi();
