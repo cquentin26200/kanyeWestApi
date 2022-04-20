@@ -44,10 +44,8 @@ async function useApi() {
   li.style.border = "1px solid black";
   ul.appendChild(li);
   const allLi = document.querySelectorAll("li");
-         allLi.filter(function (e) {
-             console.log(e)
-         })
-
+  let tmp = [];
+  tmp.push(allLi);
 
   const div = document.createElement("div");
   div.style.display = "flex";
