@@ -21,6 +21,8 @@ const button = document.querySelector("header button");
 button.style.textTransform = "uppercase";
 
 const main = document.createElement("main");
+main.style.maxWidth = "700px";
+main.style.margin = "0 auto";
 body.appendChild(main);
 
 async function getApi() {
@@ -32,16 +34,35 @@ async function getApi() {
 getApi();
 
 const ul = document.createElement("ul");
+ul.style.listStyle = "none";
 main.appendChild(ul);
-
-button.addEventListener("click", () => {
-  const li = document.createElement("li");
-  ul.appendChild(li);
-});
 
 async function useApi() {
   const sentence = await getApi();
-  console.log(sentence);
+  const li = document.createElement("li");
+  li.style.padding = "2rem";
+  li.style.border = "1px solid black";
+  ul.appendChild(li);
+  const allLi = document.querySelectorAll("li");
+         allLi.filter(function (e) {
+             console.log(e)
+         })
+
+
+  const div = document.createElement("div");
+  div.style.display = "flex";
+  div.style.flexDirection = "column";
+  div.style.alignItems = "center";
+  div.style.marginLeft = "36.7rem";
+  li.appendChild(div);
+
+  const up = document.createElement("button");
+  up.innerHTML = "UP";
+  div.appendChild(up);
+
+  const down = document.createElement("button");
+  down.innerHTML = "DOWN";
+  div.appendChild(down);
 }
 
-useApi();
+button.addEventListener("click", useApi);
