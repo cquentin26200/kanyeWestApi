@@ -40,27 +40,59 @@ main.appendChild(ul);
 async function useApi() {
   const sentence = await getApi();
   const li = document.createElement("li");
+  li.classList.add("allLi");
   li.style.padding = "2rem";
   li.style.border = "1px solid black";
   ul.appendChild(li);
-  const allLi = document.querySelectorAll("li");
-  let tmp = [];
-  tmp.push(allLi);
 
-  const div = document.createElement("div");
-  div.style.display = "flex";
-  div.style.flexDirection = "column";
-  div.style.alignItems = "center";
-  div.style.marginLeft = "36.7rem";
-  li.appendChild(div);
+  const secondUl = document.createElement("ul");
+  secondUl.classList.add("secondUl")
+  li.appendChild(secondUl);
+
+  const thirstUl = document.createElement("ul");
+  thirstUl.style.display = "flex";
+  thirstUl.style.flexDirection = "column";
+  thirstUl.style.alignItems = "center";
+  thirstUl.style.marginLeft = "36.7rem";
+  li.appendChild(secondUl);
+
+  const quote = document.createElement("li");
+  quote.classList.add("quotes");
+  secondUl.appendChild(quote);
+  quote.innerHTML = sentence;  
+  li.appendChild(thirstUl)
 
   const up = document.createElement("button");
+  up.classList.add("allUp");
   up.innerHTML = "UP";
-  div.appendChild(up);
+  thirstUl.appendChild(up);
 
   const down = document.createElement("button");
   down.innerHTML = "DOWN";
-  div.appendChild(down);
+  thirstUl.appendChild(down);
+
+  const allList = document.querySelectorAll("ul");
+  allList.forEach(element => element.style.listStyle = "none");
+
+  up.addEventListener("click", (event) => {
+    let tmp = event.target.parentElement.parentElement.previousElementSibling.children[0].children[0].textContent;
+    event.target.parentElement.parentElement.previousElementSibling.children[0].children[0].innerHTML = event.target.parentElement.parentElement.children[0].children[0].textContent;
+    event.target.parentElement.parentElement.children[0].children[0].innerHTML = tmp;
+  })
+
+  down.addEventListener("click", (event) => {
+    let tmp = event.target.parentElement.parentElement.nextElementSibling.children[0].children[0].textContent;
+    event.target.parentElement.parentElement.nextElementSibling.children[0].children[0].innerHTML = event.target.parentElement.parentElement.children[0].children[0].textContent;
+    event.target.parentElement.parentElement.children[0].children[0].innerHTML = tmp;
+  })
+  
 }
 
 button.addEventListener("click", useApi);
+
+
+
+
+
+
+
